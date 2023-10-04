@@ -1,29 +1,31 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 
-int main(){
-    int n;
-    char string[100];
-    printf("how any times string should print: ");
-    if (scanf("%d", &n) == 1) {
-        if (n < 0) {
-            printf("error negative number\n");
-            return 0;
-        }
-        
-        printf("enter string: ");
-        scanf("%s", string);
-    } else {
-        printf("error: not an integer\n");
+int main(int argc, char* argv[]){
+    printf("num of args: %d\n", argc);
+    if (argc != 3) {
+        printf("not the correct number of arguments!\n");
         return 0;
     }
 
+    printf("string: %s\n", argv[2]);
 
-    for (int i=0; i<n; i++) {
-        printf("%s\n", string);
+    char *s = argv[1];
+    char *endptr;
+    int num;
+    num = strtol(s, &endptr, 10);
+
+    if (num < 0) {
+        printf("error negative number\n");
+        return 0;
     }
 
-    printf("printed %s %d times\n", string, n);
+    for (int i=0; i<num; i++) {
+        printf("%s\n", argv[2]);
+    }
+
+    printf("printed %s %d times\n", argv[2], num);
 
     return 0;
 }
